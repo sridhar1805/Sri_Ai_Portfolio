@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sridharan's professional portfolio showcasing technical skills, projects, and experience.">
+    <title>Sridharan</title>
+
+        <!-- Standard Favicon -->
+    <link rel="icon" type="image/png" href="sri_logo.png">
+    <!-- PNG Favicons for Different Sizes -->
+    <link rel="icon" type="image/png" sizes="16x16" href="sri_logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="sri_logo.png">
+
+    <!-- Note: Only using available favicon files -->
+    <!-- The following icons are commented out as they don't exist in the repo -->
+    <!-- 
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon/android-chrome-512x512.png">
+    -->
+
+    <!-- Web App Manifest (Optional for Progressive Web Apps) -->
+    <!-- Commented out as the file doesn't exist in the repository -->
+    <!-- <link rel="manifest" href="favicon/site.webmanifest"> -->
+
+        
+    <!-- Bootstrap 5 + Custom Styles -->
+        <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    
+    <link rel="preload" href="ai-chat.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="ai-chat.css"></noscript>
+
+    <!-- Icons & Fonts -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
+    <style>
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes float-reverse {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Skill Cards */
+        .skill-card {
+            background-color: #1f2937; /* bg-gray-800 */
+            padding: 1.5rem; /* p-6 */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            transition: all 0.3s ease-in-out; /* transition-all duration-300 ease-in-out */
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-0.25rem); /* -translate-y-1 */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
+            background: rgba(31, 41, 55, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Background Animations */
+        .animate-float {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .animate-float-reverse {
+            animation: float-reverse 10s ease-in-out infinite;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .skill-card {
+                padding: 1rem; /* p-4 */
+            }
+            .skill-card i {
+                font-size: 2.25rem; /* text-4xl */
+                line-height: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .skill-card {
+                padding: 0.75rem; /* p-3 */
+            }
+            .skill-card i {
+                font-size: 1.875rem; /* text-3xl */
+                line-height: 2.25rem;
+            }
+        }
+
+        .animation-delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Security Tools Section Styling */
+        .tool-card {
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            z-index: 10;
+        }
+
+        /* Tooltip Styling */
+        .tool-card::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .tool-card::after {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid rgba(0, 0, 0, 0.85);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .tool-card:hover::before,
+        .tool-card:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-15px);
+        }
+
+        /* Gradient Glow Effect */
+        .tool-card .gradient-glow {
+            position: absolute;
+            inset: 0;
+            border-radius: 0.75rem;
+            padding: 1px;
+            background: transparent;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .tool-card:hover .gradient-glow {
+            background: linear-gradient(45deg, var(--gradient-from), var(--gradient-to));
+            animation: gradient-shift 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animate-float {
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .animate-float-reverse {
+            animation: float 20s ease-in-out infinite reverse;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+<!-- Navbar -->
+<header class="bg-gray-900/90 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-md py-3">
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- Brand with Image -->
+        <a href="#home" class="text-white font-bold text-xl flex items-center tracking-wide">
+            <div class="relative mr-2">
+                <img src="sri_logo.png" alt="Sridharan Logo" class="rounded-full border-2 border-blue-500 w-10 h-10">
+                <span class="absolute bottom-0 right-0 p-1 bg-blue-500 border border-white rounded-full"></span>
+            </div>
+            <span class="ml-1">SRIDHARAN</span>
+        </a>
+
+        <!-- Navbar Toggler (for mobile) -->
+        <button class="text-white md:hidden" id="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Navbar Links -->
+        <nav class="hidden md:flex space-x-4 items-center" id="nav-menu">
+            <a class="text-white px-3 py-2 relative hover:text-blue-400" href="#home"><span class="nav-link-text">Home</span></a>
+            <a class="text-white px-3 py-2 relative hover:text-blue-400" href="#about"><span class="nav-link-text">About</span></a>
+            <a class="text-white px-3 py-2 relative hover:text-blue-400" href="#what-i-do"><span class="nav-link-text">Services</span></a>
+            <a class="text-white px-3 py-2 relative hover:text-blue-400" href="#skills"><span class="nav-link-text">Skills</span></a>
+            <a class="text-white px-3 py-2 relative hover:text-blue-400" href="#experience"><span class="nav-link-text">Experience</span></a>
+            <a class="text-white px-3 py-2 relative hover:text-blue-400" href="#projects"><span class="nav-link-text">My Projects</span></a>
+            <a class="text-white px-3 py-2 relative hover:text-blue-400" href="#contact"><span class="nav-link-text">Contact</span></a>
+            <a id="aiChatNavbarIcon" class="bg-blue-500 text-white rounded-full px-4 py-2 flex items-center transition-all duration-300 hover:bg-blue-600">
+                <i class="fas fa-robot mr-1"></i> SriBot
+            </a>
+        </nav>
+    </div>
+</header>
+
+
+
+
+<!-- Hero Section -->
+<section id="home" class="relative overflow-hidden bg-gradient-to-r from-gray-50 to-gray-200 min-h-screen flex items-center py-20">
+    <!-- Subtle Animated Background Elements -->
+    <div class="absolute top-0 left-0 w-full h-full z-0 opacity-10 pointer-events-none">
+        <div class="absolute top-1/4 left-1/4 w-56 h-56 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full filter blur-2xl animate-float"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-gradient-to-r from-orange-400 to-red-400 rounded-full filter blur-2xl animate-float-reverse"></div>
+    </div>
+
+    <div class="container mx-auto relative z-10">
+        <div class="flex flex-col items-center justify-center gap-10 min-h-[60vh]">
+            <!-- Image Section (Moved First) -->
+            <div class="flex justify-center items-center w-full">
+                <div class="relative z-10 w-full max-w-xs mx-auto">
+                    <img src="webprofile.jpg" alt="Sridharan's Profile Picture" 
+                         class="mx-auto rounded-full shadow-2xl border-4 border-white object-cover ring-4 ring-blue-400"
+                         style="width: 180px; height: 180px;">
+                </div>
+            </div>
+            <!-- Text Section -->
+            <div class="flex flex-col items-center text-center justify-center w-full max-w-2xl mx-auto">
+                <h1 class="text-5xl font-bold mb-4 leading-tight">
+                    Hey, I'm <span class="text-blue-500">Sridharan</span>
+                </h1>
+                <div id="im-a" class="text-gray-800 text-2xl font-bold mb-4 min-h-8"></div>
+                <p class="text-gray-600 text-lg mb-8 max-w-xl mx-auto">
+                    I'm a passionate developer who builds intelligent solutions and impactful web experiences.  
+                    With experience in machine learning, data analysis.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center w-full mb-4">
+                    <a id="letsTalkBtn" class="bg-blue-500 text-white px-6 py-3 rounded-lg flex items-center transition-transform duration-300 transform hover:scale-105 shadow-lg">
+                        <span>Let's Talk</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#projects" class="bg-gray-800 text-white px-6 py-3 rounded-lg flex items-center transition-all duration-300 hover:bg-gray-900">
+                        <span>View My Work</span>
+                        <i class="fas fa-arrow-down ml-2"></i>
+                    </a>
+                </div>
+                <!-- Social Links -->
+                <div class="mt-4 flex gap-6 justify-center w-full">
+                    <a href="https://github.com/sridhar1805" class="text-gray-800 text-2xl transition-transform duration-300 transform hover:scale-110">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://instagram.com/kuttysri1805" class="text-gray-800 text-2xl transition-transform duration-300 transform hover:scale-110">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/sridharan-g-44040322a" class="text-gray-800 text-2xl transition-transform duration-300 transform hover:scale-110">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Down Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+        <a href="#about" class="text-gray-800 flex flex-col items-center transition-transform duration-300 transform hover:translate-y-1">
+            <span class="mb-2">Scroll Down</span>
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </div>
+</section>
+
+
+
+
+<!-- About Me -->
+<section id="about" class="py-16 bg-gray-800 text-white text-center relative">
+    <div class="container mx-auto">
+      <div class="flex flex-col items-center justify-center">
+        <div class="w-24 h-24 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 flex items-center justify-center shadow-xl mb-6 animate-float">
+          <img src="webprofile2.jpg" alt="Sridharan G" class="w-20 h-20 rounded-full border-4 border-white object-cover">
+        </div>
+        <h2 class="text-5xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-fade-in-up">who am I? </h2>
+        <div class="max-w-3xl w-full mx-auto">
+          <div class="rounded-2xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 p-8 shadow-2xl animate-fade-in-up">
+            <h3 class="text-3xl font-bold mb-4 text-blue-300">Hi, I'm Sridharan G</h3>
+            <p class="text-lg text-gray-200 mb-4">A recent graduate with a <span class="font-semibold text-yellow-400">B.Tech in Information Technology</span> from Kings Engineering College, Chennai. I specialize in <span class="font-semibold text-blue-400">machine learning</span>, <span class="font-semibold text-green-400">data analytics</span>, and <span class="font-semibold text-pink-400">web development</span>, and I'm passionate about building real-world tech solutions that make an impact.</p>
+            <p class="text-base text-gray-300 mb-4">During my academic and internship experiences, I’ve worked on AI models, applications, and data-driven tools. At <span class="font-semibold text-blue-500">Vcodez</span>, I contributed to machine learning projects involving model deployment and analytics. As a web development intern at <span class="font-semibold text-green-500">Oasis Infobyte</span>, I built responsive and user-friendly interfaces using modern web technologies.</p>
+            <p class="text-base text-gray-300 mb-4">I’ve also published a research paper on <span class="font-semibold text-purple-400">Flood Forecasting using the KNN Algorithm</span>, reflecting my interest in using AI for societal benefits. My personal projects include <span class="font-semibold text-pink-400">ArtPromptAI</span>, an AI-based painting generator, and a rental web app using the <span class="font-semibold text-blue-400">MERN stack</span>.</p>
+            <p class="text-base text-gray-300 mb-4">I'm now actively looking for opportunities as a <span class="font-semibold text-blue-400">Machine Learning Engineer</span>, <span class="font-semibold text-green-400">Data Analyst</span>, or <span class="font-semibold text-pink-400">Web Developer</span>, where I can apply my skills in Python, ML libraries, and web technologies to real-world challenges.</p>
+            <div class="flex flex-wrap gap-4 justify-center mt-6">
+              <span class="inline-block px-4 py-2 rounded-full bg-blue-500 text-white font-semibold shadow-md animate-fade-in-up">Machine Learning</span>
+              <span class="inline-block px-4 py-2 rounded-full bg-pink-500 text-white font-semibold shadow-md animate-fade-in-up animation-delay-300">Web Development</span>
+              <span class="inline-block px-4 py-2 rounded-full bg-green-500 text-white font-semibold shadow-md animate-fade-in-up animation-delay-500">Data Analytics</span>
+              <!-- <span class="inline-block px-4 py-2 rounded-full bg-purple-500 text-white font-semibold shadow-md animate-fade-in-up animation-delay-700">AI for Social Good</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<!-- What I Do Section -->
+<section id="what-i-do" class="py-16 bg-gray-100">
+    <div class="container mx-auto">
+        <h2 class="text-center text-4xl font-bold mb-8">What I Do</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg shadow-md p-8 text-center">
+                <i class="fas fa-robot text-4xl text-red-500 mb-4"></i>
+                <h5 class="text-xl font-bold">Machine Learning Models</h5>
+                <p class="text-gray-600">I build ML models for prediction, classification, and data insights.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-8 text-center">
+                <i class="fas fa-chart-bar text-4xl text-green-500 mb-4"></i>
+                <h5 class="text-xl font-bold">Data Analysis & Visualization</h5>
+                <p class="text-gray-600"> I turn raw data into visual stories using Python and Power BI.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-8 text-center">
+                <i class="fas fa-laptop-code text-4xl text-pink-500 mb-4"></i>
+                <h5 class="text-xl font-bold">Interactive Web Design</h5>
+                <p class="text-gray-600"> I design animated, user-friendly websites with attention to detail and motion.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-8 text-center">
+                <i class="fas fa-brain text-4xl text-blue-500 mb-4"></i>
+                <h5 class="text-xl font-bold">AI-Based Mini Projects</h5>
+                <p class="text-gray-600">I develop small AI apps using Python and deep learning tools.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-8 text-center">
+                <i class="fas fa-project-diagram text-4xl text-yellow-500 mb-4"></i>
+                <h5 class="text-xl font-bold">Academic Project Guidance</h5>
+                <p class="text-gray-600">I help students with ML-based mini projects and reports.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-8 text-center">
+                <i class="fab fa-python text-4xl text-Yellow-500 mb-4"></i>
+                <h5 class="text-xl font-bold">Python & ML Learning Support</h5>
+                <p class="text-gray-600">I guide beginners in Python, ML concepts, and tools.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+
+<!-- Experience Section -->
+<section id="experience" class="py-16 bg-gray-100">
+  <div class="container mx-auto">
+    <h2 class="text-center text-4xl font-extrabold mb-12 tracking-wide text-gradient bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-fade-in-up">EXPERIENCE & CERTIFICATIONS</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <!-- Experience Card -->
+      <div class="relative group rounded-2xl shadow-xl bg-white p-8 overflow-hidden transition-transform duration-500 hover:-translate-y-2 hover:shadow-2xl animate-fade-in-up">
+        <span class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"></span>
+        <div class="flex items-center mb-6">
+          <i class="fas fa-robot text-4xl text-blue-500 mr-4 animate-float"></i>
+          <div>
+            <h3 class="text-2xl font-bold mb-1">Machine Learning Engineer Intern</h3>
+            <p class="text-gray-600 font-semibold text-base">Vcodez – Sholinganallur, Chennai</p>
+            <p class="text-gray-500 text-sm">April 2025 – July 2025</p>
+          </div>
+        </div>
+        <ul class="list-disc pl-6 text-gray-700 text-base space-y-2 mb-6">
+          <li class="transition-all duration-300 hover:text-blue-500">Worked on AI projects involving machine learning, deep learning, and data analytics</li>
+          <li class="transition-all duration-300 hover:text-blue-500">Implemented algorithms for classification, prediction, and pattern recognition</li>
+          <li class="transition-all duration-300 hover:text-blue-500">Gained hands-on experience with real-world datasets and AI model deployment</li>
+        </ul>
+        <div class="flex items-center mb-4 mt-2">
+          <i class="fas fa-laptop-code text-4xl text-green-500 mr-4 animate-float-reverse"></i>
+          <div>
+            <h3 class="text-2xl font-bold mb-1">Web Development & Designing Intern</h3>
+            <p class="text-gray-600 font-semibold text-base">Oasis Infobyte – Remote</p>
+            <p class="text-gray-500 text-sm">Sep 2024 – Oct 2024</p>
+          </div>
+        </div>
+        <ul class="list-disc pl-6 text-gray-700 text-base space-y-2">
+          <li class="transition-all duration-300 hover:text-green-500">Designed and developed responsive, user-friendly web applications</li>
+          <li class="transition-all duration-300 hover:text-green-500">Applied modern tools and frameworks to improve UI/UX</li>
+          <li class="transition-all duration-300 hover:text-green-500">Strengthened HTML, CSS, and JavaScript development skills</li>
+        </ul>
+      </div>
+      <!-- Certifications Card -->
+      <div class="relative group rounded-2xl shadow-xl bg-white p-8 overflow-hidden transition-transform duration-500 hover:-translate-y-2 hover:shadow-2xl animate-fade-in-up animation-delay-300">
+        <span class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 via-green-400 to-pink-400"></span>
+        <div class="flex items-center mb-6">
+          <i class="fas fa-certificate text-4xl text-yellow-500 mr-4 animate-float"></i>
+          <h3 class="text-2xl font-bold">Certifications</h3>
+        </div>
+        <div class="space-y-6 w-full">
+          <div class="flex items-center justify-between bg-blue-50 rounded-lg p-4 shadow-sm hover:bg-blue-100 transition duration-300">
+            <div>
+              <span class="font-semibold text-gray-800 text-base">Python Certification Course – Eduprep</span><br>
+              <span class="text-gray-500 text-xs">� Completed: Dec 2023</span>
+            </div>
+            <a href="https://m.eduprep.co/share-certificate?serialno=XLIPX3AL" class="text-blue-500 font-bold hover:underline text-xs">� Verify</a>
+          </div>
+          <div class="flex items-center justify-between bg-green-50 rounded-lg p-4 shadow-sm hover:bg-green-100 transition duration-300">
+            <div>
+              <span class="font-semibold text-gray-800 text-base">Front End Development – Great Learning</span><br>
+              <span class="text-gray-500 text-xs">� Completed: July 2024</span>
+            </div>
+            <a href="https://www.mygreatlearning.com/certificate/FEOWGMSZ" class="text-green-500 font-bold hover:underline text-xs">� Verify</a>
+          </div>
+          <div class="flex items-center justify-between bg-purple-50 rounded-lg p-4 shadow-sm hover:bg-purple-100 transition duration-300">
+            <div>
+              <span class="font-semibold text-gray-800 text-base">WordPress Development – Nativeva</span><br>
+              <span class="text-gray-500 text-xs">� Completed: Nov 2024</span>
+            </div>
+            <a href="https://nativeva.com/tutor-certificate-3/?cert_hash=7e0efe130682cffe" class="text-purple-500 font-bold hover:underline text-xs">� Verify</a>
+          </div>
+          <div class="flex items-center justify-between bg-pink-50 rounded-lg p-4 shadow-sm hover:bg-pink-100 transition duration-300">
+            <div>
+              <span class="font-semibold text-gray-800 text-base">Data Analysis with Python – Coursera (IBM)</span><br>
+              <span class="text-gray-500 text-xs">� Completed: Mar 2025</span>
+            </div>
+            <a href="https://www.coursera.org/account/accomplishments/verify/fcfcc2b24bdc08e43117de448729bc25" class="text-pink-500 font-bold hover:underline text-xs">� Verify</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="skills" class="py-20 bg-gray-900 text-white">
+  <div class="container mx-auto px-4 max-w-5xl">
+    <h2 class="text-center text-5xl font-bold mb-16 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Skills</h2>
+    <div class="space-y-12">
+      <!-- Languages -->
+      <div class="animate-fade-in-up">
+        <h3 class="text-2xl font-semibold mb-6 text-gray-300 border-b border-gray-700 pb-2">Languages</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fab fa-python text-5xl text-blue-500 mb-2"></i>
+            <span class="font-medium">Python</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fab fa-js-square text-5xl text-yellow-400 mb-2"></i>
+            <span class="font-medium">JavaScript</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fab fa-html5 text-5xl text-red-500 mb-2"></i>
+            <span class="font-medium">HTML</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fab fa-css3-alt text-5xl text-blue-400 mb-2"></i>
+            <span class="font-medium">CSS</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-database text-5xl text-brown-500 mb-2"></i>
+            <span class="font-medium">SQL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Frontend -->
+      <div class="animate-fade-in-up">
+        <h3 class="text-2xl font-semibold mb-6 text-gray-300 border-b border-gray-700 pb-2">Frontend</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-laptop-code text-5xl text-cyan-400 mb-2"></i>
+            <span class="font-medium">Responsive Design</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fab fa-wordpress-simple text-5xl text-pink-400 mb-2"></i>
+            <span class="font-medium">Wordpress</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-puzzle-piece text-5xl text-green-400 mb-2"></i>
+            <span class="font-medium">Interactive Elements (JS)</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-mobile-alt text-5xl text-blue-500 mb-2"></i>
+            <span class="font-medium">Mobile Responsive</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-clipboard-list text-5xl text-yellow-500 mb-2"></i>
+            <span class="font-medium">Forms & Layout</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backend -->
+      <div class="animate-fade-in-up">
+        <h3 class="text-2xl font-semibold mb-6 text-gray-300 border-b border-gray-700 pb-2">Backend</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-network-wired text-5xl text-green-400 mb-2"></i>
+            <span class="font-medium">REST APIs (concept)</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fab fa-python text-5xl text-blue-500 mb-2"></i>
+            <span class="font-medium">Backend scripting (Python)</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-cogs text-5xl text-gray-400 mb-2"></i>
+            <span class="font-medium">Logic / Function design</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-exchange-alt text-5xl text-blue-400 mb-2"></i>
+            <span class="font-medium">Fast API</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-code text-5xl text-purple-500 mb-2"></i>
+            <span class="font-medium">Server-side basics</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Machine Learning -->
+      <div class="animate-fade-in-up">
+        <h3 class="text-2xl font-semibold mb-6 text-gray-300 border-b border-gray-700 pb-2">Machine Learning</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-brain text-5xl text-pink-400 mb-2"></i>
+            <span class="font-medium">Supervised & Unsupervised Learning</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-chart-line text-5xl text-green-400 mb-2"></i>
+            <span class="font-medium">Model Evaluation & Metrics</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-box-open text-5xl text-yellow-500 mb-2"></i>
+            <span class="font-medium">Scikit-learn, XGBoost</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-chart-area text-5xl text-blue-400 mb-2"></i>
+            <span class="font-medium">Data Preprocessing & Feature Engineering</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-project-diagram text-5xl text-purple-500 mb-2"></i>
+            <span class="font-medium">ML Pipelines</span>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Cloud & Deployment -->
+      <div class="animate-fade-in-up">
+        <h3 class="text-2xl font-semibold mb-6 text-gray-300 border-b border-gray-700 pb-2">Cloud & Deployment</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-cloud-upload-alt text-5xl text-blue-400 mb-2"></i>
+            <span class="font-medium">Deployment</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-upload text-5xl text-green-400 mb-2"></i>
+            <span class="font-medium">Render / GitHub Pages</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-rocket text-5xl text-pink-400 mb-2"></i>
+            <span class="font-medium">Streamlit Sharing</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-link text-5xl text-purple-400 mb-2"></i>
+            <span class="font-medium">Live App Hosting</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-folder-open text-5xl text-yellow-500 mb-2"></i>
+            <span class="font-medium">Project Management</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Security & Tools -->
+      <div class="animate-fade-in-up">
+        <h3 class="text-2xl font-semibold mb-6 text-gray-300 border-b border-gray-700 pb-2"> Tools</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-code text-5xl text-blue-400 mb-2"></i>
+            <span class="font-medium">VS Code</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-microscope text-5xl text-green-400 mb-2"></i>
+            <span class="font-medium">Jupyter Notebook</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-tools text-5xl text-gray-400 mb-2"></i>
+            <span class="font-medium">Git & GitHub</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-chart-bar text-5xl text-yellow-500 mb-2"></i>
+            <span class="font-medium">Power BI</span>
+          </div>
+          <div class="skill-card group flex flex-col items-center">
+            <i class="fas fa-file-excel text-5xl text-green-500 mb-2"></i>
+            <span class="font-medium">Excel / PowerPoint</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
+
+<!-- Projects Section -->
+<section id="projects" class="py-16 bg-gray-100">
+    <div class="container mx-auto">
+        <h2 class="text-center text-4xl font-bold mb-8">My Projects</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <a href="" target="_blank" class="text-decoration-none text-dark">
+                    <img src="project1.png" class="w-full h-48 object-cover" alt="AI Portfolio">
+                    <div class="p-6">
+                        <h5 class="text-xl font-bold text-gray-800">AI Portfolio</h5>
+                        <p class="text-gray-600">🧠 Showcasing my AI tools</p>
+                    </div>
+                </a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <a href="https://github.com/sridhar1805/NM-House-Rent-RentEase-.git" target="_blank" class="text-decoration-none text-dark">
+                    <img src="project2.jpg" class="w-full h-48 object-cover" alt="Houserent">
+                    <div class="p-6">
+                        <h5 class="text-xl font-bold text-gray-800">House Rent</h5>
+                        <p class="text-gray-600">🏠house renting-app</p>
+                    </div>
+                </a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <a href="https://github.com/sridhar1805/artpromtai.git" target="_blank" class="text-decoration-none text-dark">
+                    <img src="project3.jpg" class="w-full h-48 object-cover" alt="ArtPromTai">
+                    <div class="p-6">
+                        <h5 class="text-xl font-bold text-gray-800">ArtPromTai</h5>
+                        <p class="text-gray-600">🤖Simple AI-powered prompt generator for artists</p>
+                    </div>
+                </a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <a href="https://github.com/sridhar1805/Flood-Prediction.git" target="_blank" class="text-decoration-none text-dark">
+                    <img src="project4.png" class="w-full h-48 object-cover" alt="Flood-Prediction">
+                    <div class="p-6">
+                        <h5 class="text-xl font-bold text-gray-800">Flood-Prediction</h5>
+                        <p class="text-gray-600">🌊 Predicting flood using machine learning</p>
+                    </div>
+                </a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <a href=https://jpsolutions.netlify.app/ target="_blank" class="text-decoration-none text-dark">
+                    <img src="project5.png" class="w-full h-48 object-cover" alt="IslaWeb">
+                    <div class="p-6">
+                        <h5 class="text-xl font-bold text-gray-800">JP solutions</h5>
+                        <p class="text-gray-600">🌴Company Web design </p>
+                    </div>
+                </a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <a href="https:" target="_blank" class="text-decoration-none text-dark">
+                    <img src="project0.png" class="w-full h-48 object-cover" alt="SAMP Server">
+                    <div class="p-6">
+                        <h5 class="text-xl font-bold text-gray-800">Loading...</h5>
+                        <p class="text-gray-600"></p>
+                    </div>
+                </a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <a href="https:" target="_blank" class="text-decoration-none text-dark">
+                    <img src="project00.png" class="w-full h-48 object-cover" alt="Lazyprompter">
+                    <div class="p-6">
+                        <h5 class="text-xl font-bold text-gray-800">Loading...</h5>
+                        <p class="text-gray-600"></p>
+                    </div>
+                </a>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <a href="https:" target="_blank" class="text-decoration-none text-dark">
+                    <img src="project00.png" class="w-full h-48 object-cover" alt="NeuroGEN">
+                    <div class="p-6">
+                        <h5 class="text-xl font-bold text-gray-800">Loading...</h5>
+                        <p class="text-gray-600"></p>
+                    </div>
+                </a>
+
+            </div>
+            <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <a href="https:" target="_blank" class="text-decoration-none text-dark">
+                    <img src="project00.png" class="w-full h-48 object-cover" alt="The Project Theo">
+                    <div class="p-6">
+                        <h5 class="text-xl font-bold text-gray-800">Loading...</h5>
+                        <p class="text-gray-600"></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="py-16 bg-gray-800 text-white text-center">
+    <div class="container mx-auto">
+        <h2 class="text-4xl font-bold mb-4">Get in Touch</h2>
+        <p class="text-lg mb-8">Let's talk code, AI, or just geek out over tech.</p>
+
+        <form id="contactForm" class="max-w-xl mx-auto bg-gray-900 rounded-xl p-8 shadow-lg mb-8">
+            <div class="mb-4 text-left">
+                <label for="name" class="block mb-2 font-semibold">Name</label>
+                <input type="text" id="name" name="name" required class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div class="mb-4 text-left">
+                <label for="email" class="block mb-2 font-semibold">Email</label>
+                <input type="email" id="email" name="email" required class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div class="mb-4 text-left">
+                <label for="phone" class="block mb-2 font-semibold">Phone Number</label>
+                <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div class="mb-4 text-left">
+                <label for="message" class="block mb-2 font-semibold">Message</label>
+                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 rounded-lg transition-all duration-300">Send Message</button>
+            <p id="formSuccess" class="hidden mt-4 text-green-400 font-semibold text-center">Thank you! Your message has been received.</p>
+
+        </form>
+        <!-- Resume Download Button -->
+        <div class="mb-8">
+            <a href="Sridharen_Resume_New.pdf" download class="inline-flex items-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg shadow transition-all duration-300">
+                <i class="fas fa-download mr-2"></i> Download Resume
+            </a>
+        </div>
+
+
+        <!-- Email -->
+
+        <p class="text-lg mb-2">
+            <i class="fas fa-envelope mr-2 text-blue-400"></i> 
+            <a href="mailto:sritharganesan31@gmail.com" class="text-white font-semibold hover:text-blue-400">sritharganesan31@gmail.com</a>
+        </p>
+        <p class="text-lg mb-6">
+            <i class="fas fa-phone-alt mr-2 text-green-400"></i>
+            <a href="tel:9384332640" class="text-white font-semibold hover:text-green-400">9384332640</a>
+        </p>
+
+        <!-- Social Links -->
+        <div class="flex justify-center space-x-4 mt-6">
+            <a href="https://github.com/sridhar1805" class="bg-gray-700 text-white px-6 py-3 rounded-lg flex items-center transition-transform duration-300 transform hover:scale-105" 
+               target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github mr-2"></i> GitHub
+            </a>
+            <a href="https://wa.me/9384332640" class="bg-green-500 text-white px-6 py-3 rounded-lg flex items-center transition-transform duration-300 transform hover:scale-105"
+               target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+            </a>
+        </div>
+    </div>
+    <script>
+    // Simple client-side form handler
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.getElementById('contactForm');
+      var successMsg = document.getElementById('formSuccess');
+      if(form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          form.reset();
+          successMsg.classList.remove('hidden');
+          setTimeout(function() {
+            successMsg.classList.add('hidden');
+          }, 4000);
+        });
+      }
+    });
+    </script>
+</section>
+
+<!-- Footer -->
+<footer class="py-4 bg-gray-900 text-white text-center">
+    <p>&copy;<script>document.write(new Date().getFullYear());</script> sridhar. All rights reserved.</p>
+</footer>
+
+    <!-- SriBot Panel -->
+    <div id="aiChatPanel" class="ai-chat-panel">
+        <div class="ai-chat-header">
+            <img src="sri_logo.png" alt="SriBot Logo" class="ai-chat-header-avatar">
+            <span>SriBot</span>
+            <button id="aiChatClose" class="ai-chat-close">&times;</button>
+        </div>
+        <div class="ai-chat-messages">
+            <!-- Initial bot message -->
+            <p class="ai-chat-message ai-chat-message-bot">Hello! How can I help you today?</p>
+        </div>
+        <div class="ai-chat-suggestions" id="aiChatSuggestions">
+            <!-- Suggestion buttons will be added dynamically -->
+        </div>
+        <div class="ai-chat-input-area">
+            <input type="text" id="aiChatInput" placeholder="Type your message...">
+            <button id="aiChatSend">Send</button>
+        </div>
+    </div>
+
+    <!-- Global error handler -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Script error:', e.message, 'in', e.filename, 'line', e.lineno);
+        }, true);
+    </script>
+
+    <!-- Scripts -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+    <script src="./github-api.js" defer></script>
+    <script src="./ai-chat.js" defer></script>
+    <script src="./script.js" defer></script>
+    <script src="./favicon/email.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+// Mobile navbar toggle logic
+document.addEventListener('DOMContentLoaded', function() {
+  var navToggle = document.getElementById('nav-toggle');
+  var navMenu = document.getElementById('nav-menu');
+  function updateMenuDisplay() {
+    if(window.innerWidth < 768) {
+      navMenu.style.display = navMenu.classList.contains('open') ? 'flex' : 'none';
+      navMenu.classList.add('flex-col', 'bg-gray-900', 'absolute', 'top-16', 'left-0', 'w-full', 'z-50', 'py-4');
+    } else {
+      navMenu.style.display = 'flex';
+      navMenu.classList.remove('flex-col', 'bg-gray-900', 'absolute', 'top-16', 'left-0', 'w-full', 'z-50', 'py-4');
+    }
+  }
+  navToggle.addEventListener('click', function() {
+    navMenu.classList.toggle('open');
+    updateMenuDisplay();
+  });
+  window.addEventListener('resize', updateMenuDisplay);
+  updateMenuDisplay();
+  // Close menu after clicking a link (mobile)
+  navMenu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      if(window.innerWidth < 768) {
+        navMenu.classList.remove('open');
+        updateMenuDisplay();
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

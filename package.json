@@ -1,0 +1,19 @@
+{
+  "name": "ai-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio website",
+  "private": true,
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sridhar1805/ai-portfolio.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sridhar1805/ai-portfolio/issues"
+  },
+  "homepage": "https://sridhar1805.github.io/ai-portfolio/"
+}
